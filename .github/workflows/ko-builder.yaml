@@ -40,4 +40,4 @@ jobs:
           BINARY: ${{ inputs.service }}
         run: |
           SBOM=cyclonedx
-          ko build --bare --sbom=$SBOM --image-refs=ko.images ./${{ inputs.namespace }}/${{ inputs.service }}/cmd/${{ inputs.service }}
+          ko build --bare --sbom=$SBOM --image-refs=ko.images ./backend/${{ inputs.namespace }}/${{ inputs.service }}/cmd/${{ inputs.service }}

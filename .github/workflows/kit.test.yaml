@@ -23,7 +23,7 @@ jobs:
       - name: Start up docker compose
         run: docker-compose -f kit/docker-compose.yaml up -d --remove-orphans
       - name: Run Kit Test
-        run: go test -v -race -p=6 -cpu=1,4 ./kit/...
+        run: go test -v -race -p=6 -cpu=1,4 ./backend/kit/...
       - name: Stop containers
         if: always()
         run: docker-compose -f kit/docker-compose.yaml down
