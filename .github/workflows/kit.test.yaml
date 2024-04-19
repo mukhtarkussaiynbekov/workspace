@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [ opened, synchronize ]
     paths:
-      - "kit/**/*.go"
+      - "backend/kit/**/*.go"
 
 env:
   TESTINGDB_URL: postgresql://postgres:secret@localhost:5432/postgres
