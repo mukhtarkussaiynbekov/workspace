@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "sample/sampleapp/**/*.go"
-      - "kit/**/*.go"
+      - "backend/sample/sampleapp/**/*.go"
+      - "backend/kit/**/*.go"
 jobs:
   # Build the image of the service and push it
   build-and-push:

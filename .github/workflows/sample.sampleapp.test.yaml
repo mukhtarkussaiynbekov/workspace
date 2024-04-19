@@ -3,8 +3,8 @@ on:
   pull_request:
     types: [ opened, synchronize ]
     paths:
-      - "sample/sampleapp/**/*.go"
-      - "kit/**/*.go"
+      - "backend/sample/sampleapp/**/*.go"
+      - "backend/kit/**/*.go"
 jobs:
   test:
     runs-on: ubuntu-latest
