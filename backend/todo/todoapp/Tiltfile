@@ -1,0 +1,15 @@
+load('ext://ko', 'ko_build')
+
+ko_build(
+    'local/todo/todoapp',
+    './cmd/todoapp',
+    deps = ['../../api/', '../../kit/', '../../vendor/', './', '../../go.mod', '../../go.sum'],
+)
+
+k8s_resource('todoapp',
+    port_forwards=[
+        '8010:8080',  # todoapp service endpoints
+        '8011:9090'   # todoapp metrics endpoint
+    ],
+    labels=["todo"],
+)
