@@ -8,7 +8,7 @@ The package strategy that we use for the projects involves 4 simple tenets:
 3. Use a shared _mock_ subpackage
 4. _Main_ package ties together dependencies
 
-These rules help isolate the packages and define a clear domain language across the entire application. An example/demo implementation can be found [here](https://github.com/anthonycorbacho/workspace/tree/main/sample/sampleapp).
+These rules help isolate the packages and define a clear domain language across the entire application. An example/demo implementation can be found [here](https://github.com/mukhtarkv/workspace/tree/main/sample/sampleapp).
 
 * [Root package is for domain types](#root-package-is-for-domain-types)
 * [Group subpackages by dependency](#group-subpackages-by-dependency)
@@ -57,7 +57,7 @@ package postgres
 import (
 	"database/sql"
 
-	"github.com/anthonycorbacho/workspace/sample/sampleapp"
+	"github.com/mukhtarkv/workspace/sample/sampleapp"
 	_ "github.com/lib/pq"
 )
 
@@ -141,7 +141,7 @@ Because the dependencies are isolated from other dependencies by the domain inte
 ```go
 package mock
 
-import "github.com/anthonycorbacho/workspace/sample/sampleapp"
+import "github.com/mukhtarkv/workspace/sample/sampleapp"
 
 // UserStorage represents a mock implementation of sampleapp.UserStorage.
 type UserStorage struct {
@@ -192,8 +192,8 @@ import (
 	"log"
 	"os"
 	
-	"github.com/anthonycorbacho/workspace/sample/sampleapp"
-	"github.com/anthonycorbacho/workspace/sample/sampleapp/postgres"
+	"github.com/mukhtarkv/workspace/sample/sampleapp"
+	"github.com/mukhtarkv/workspace/sample/sampleapp/postgres"
 )
 
 func main() {

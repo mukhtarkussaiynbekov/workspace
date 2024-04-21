@@ -3,7 +3,7 @@ package kit
 import (
 	"time"
 
-	"github.com/anthonycorbacho/workspace/kit/log"
+	"github.com/mukhtarkv/workspace/kit/log"
 	"github.com/rs/cors"
 	"google.golang.org/grpc"
 )

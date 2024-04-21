@@ -1,6 +1,6 @@
 # Workspace
-[![Go Report Card](https://goreportcard.com/badge/github.com/anthonycorbacho/workspace)](https://goreportcard.com/report/github.com/anthonycorbacho/workspace)
-[![go.mod Go version](https://img.shields.io/github/go-mod/go-version/anthonycorbacho/workspace)](https://github.com/anthonycorbacho/workspace)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mukhtarkv/workspace)](https://goreportcard.com/report/github.com/mukhtarkv/workspace)
+[![go.mod Go version](https://img.shields.io/github/go-mod/go-version/anthonycorbacho/workspace)](https://github.com/mukhtarkv/workspace)
 
 **Workspace** is a Mono-repository template for building and deploying distributed applications.
 

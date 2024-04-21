@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 	"math"
 
-	pb "github.com/anthonycorbacho/workspace/kit/pagination/v1"
+	pb "github.com/mukhtarkv/workspace/kit/pagination/v1"
 	"google.golang.org/protobuf/proto"
 )
 

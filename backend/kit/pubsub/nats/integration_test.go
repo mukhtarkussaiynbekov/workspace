@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/anthonycorbacho/workspace/kit/log"
-	"github.com/anthonycorbacho/workspace/kit/pubsub"
+	"github.com/mukhtarkv/workspace/kit/log"
+	"github.com/mukhtarkv/workspace/kit/pubsub"
 	"github.com/nats-io/nats.go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"

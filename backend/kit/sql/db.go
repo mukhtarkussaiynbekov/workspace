@@ -8,10 +8,10 @@ import (
 
 	"github.com/golang-migrate/migrate/v4"
 
-	"github.com/anthonycorbacho/workspace/kit/errors"
 	"github.com/golang-migrate/migrate/v4/database/pgx"
 	"github.com/golang-migrate/migrate/v4/source/iofs"
 	"github.com/jmoiron/sqlx"
+	"github.com/mukhtarkv/workspace/kit/errors"
 	"github.com/uptrace/opentelemetry-go-extra/otelsql"
 	"github.com/uptrace/opentelemetry-go-extra/otelsqlx"
 	"github.com/xo/dburl"

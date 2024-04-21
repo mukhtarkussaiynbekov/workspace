@@ -4,9 +4,9 @@ import (
 	"log"
 	"testing"
 
-	db "github.com/anthonycorbacho/workspace/kit/sql"
-	"github.com/anthonycorbacho/workspace/todo/todoapp/assets"
 	"github.com/jmoiron/sqlx"
+	db "github.com/mukhtarkv/workspace/kit/sql"
+	"github.com/mukhtarkv/workspace/todo/todoapp/assets"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
@@ -50,7 +50,7 @@ func (s *todoTestSuite) TestFetch() {
 	todo, err := s.st.Fetch("xid1")
 	assert.NoError(s.T(), err)
 	assert.NotNil(s.T(), todo)
-	assert.Equal(s.T(), "xid1", todo.id)
-	assert.Equal(s.T(), "buy grocery", todo.title)
-	assert.Equal(s.T(), "buy milk and bread", todo.details)
+	assert.Equal(s.T(), "xid1", todo.Id)
+	assert.Equal(s.T(), "buy grocery", todo.Title)
+	assert.Equal(s.T(), "buy milk and bread", todo.Details)
 }

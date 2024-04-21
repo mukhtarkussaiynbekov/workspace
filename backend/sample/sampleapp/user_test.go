@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/anthonycorbacho/workspace/sample/sampleapp"
-	"github.com/anthonycorbacho/workspace/sample/sampleapp/inmem"
+	"github.com/mukhtarkv/workspace/sample/sampleapp"
+	"github.com/mukhtarkv/workspace/sample/sampleapp/inmem"
 	"github.com/stretchr/testify/assert"
 )
 

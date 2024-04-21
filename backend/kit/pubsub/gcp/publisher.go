@@ -7,8 +7,8 @@ import (
 	"time"
 
 	gcppubsub "cloud.google.com/go/pubsub"
-	"github.com/anthonycorbacho/workspace/kit/errors"
-	"github.com/anthonycorbacho/workspace/kit/pubsub"
+	"github.com/mukhtarkv/workspace/kit/errors"
+	"github.com/mukhtarkv/workspace/kit/pubsub"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"

@@ -3,7 +3,7 @@ package errors
 import (
 	"testing"
 
-	"github.com/anthonycorbacho/workspace/api/errdetails"
+	"github.com/mukhtarkv/workspace/api/errdetails"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

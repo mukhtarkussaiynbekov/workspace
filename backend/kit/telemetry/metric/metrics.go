@@ -3,7 +3,7 @@ package metric
 import (
 	"sync"
 
-	"github.com/anthonycorbacho/workspace/kit/errors"
+	"github.com/mukhtarkv/workspace/kit/errors"
 	prom "github.com/prometheus/client_golang/prometheus"
 )
 

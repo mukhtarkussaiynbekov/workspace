@@ -4,7 +4,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/anthonycorbacho/workspace/kit/errors"
+	"github.com/mukhtarkv/workspace/kit/errors"
 )
 
 // An Option is used to construct a metric.

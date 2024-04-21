@@ -4,7 +4,7 @@ import (
 	"context"
 	"runtime"
 
-	"github.com/anthonycorbacho/workspace/kit/config"
+	"github.com/mukhtarkv/workspace/kit/config"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
