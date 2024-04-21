@@ -5,6 +5,9 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	"github.com/mukhtarkv/workspace/todo/todoapp"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 )
 
 // Verify interface compliance
@@ -21,12 +24,18 @@ type todo struct {
 }
 
 func (s *storage) Fetch(ctx context.Context, id string) (todoapp.ToDoItem, error) {
+	_, span := otel.Tracer("").Start(ctx, "postgres.fetch")
+	defer span.End()
+	
 	q := `SELECT id, title, details
 		FROM todo
 		WHERE id = $1`
 	var res todo
 	if err := s.db.QueryRowxContext(ctx, q, id).StructScan(&res); err != nil {
-		return todoapp.ToDoItem{}, err
+		span.RecordError(err)
+		span.SetStatus(codes.Error, "fetching")
+		span.SetAttributes(attribute.String("id", id))
+		return todoapp.ToDoItem{}, Wrap(err, "fetching")
 	}
 	return todoapp.ToDoItem{
 		Id: res.Id,
@@ -36,11 +45,16 @@ func (s *storage) Fetch(ctx context.Context, id string) (todoapp.ToDoItem, error
 }
 
 func (s *storage) List(ctx context.Context) ([]todoapp.ToDoItem, error) {
+	_, span := otel.Tracer("").Start(ctx, "postgres.list")
+	defer span.End()
+
 	q := `SELECT id, title, details
 		FROM todo`
 	var entities []todo
 	if err := s.db.SelectContext(ctx, &entities, q); err != nil {
-		return []todoapp.ToDoItem{}, err
+		span.RecordError(err)
+		span.SetStatus(codes.Error, "listing todo entities")
+		return []todoapp.ToDoItem{}, Wrap(err, "listing todo entities")
 	}
 	var res []todoapp.ToDoItem
 	for _, entity := range entities {
@@ -54,6 +68,9 @@ func (s *storage) List(ctx context.Context) ([]todoapp.ToDoItem, error) {
 }
 
 func (s *storage) Create(ctx context.Context, item todoapp.ToDoItem) error {
+	_, span := otel.Tracer("").Start(ctx, "postgres.create")
+	defer span.End()
+
 	q := `INSERT INTO todo (id, title, details)
 		VALUES (:id, :title, :details)`
 	entity := todo{
@@ -62,15 +79,28 @@ func (s *storage) Create(ctx context.Context, item todoapp.ToDoItem) error {
 		Details: item.Details,
 	}
 	if _, err := s.db.NamedExecContext(ctx, q, entity); err != nil {
-		return err
+		span.RecordError(err)
+		span.SetStatus(codes.Error, "creating entity")
+		span.SetAttributes(
+			attribute.String("id", entity.Id),
+			attribute.String("title", entity.Title),
+			attribute.String("details", entity.Details),
+		)
+		return Wrap(err, "creating entity")
 	}
 	return nil
 }
 
 func (s *storage) Delete(ctx context.Context, id string) error {
+	_, span := otel.Tracer("").Start(ctx, "postgres.delete")
+	defer span.End()
+
 	q := `DELETE FROM todo WHERE id = $1`
 	if _, err := s.db.ExecContext(ctx, q, id); err != nil {
-		return err
+		span.RecordError(err)
+		span.SetStatus(codes.Error, "deleting entity")
+		span.SetAttributes(attribute.String("id", id))
+		return Wrap(err, "deleting entity")
 	}
 	return nil
 }

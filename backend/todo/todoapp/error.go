@@ -1,12 +1,10 @@
 package todoapp
 
 const (
-	// ErrUserNotFound when user is not found.
-	ErrUserNotFound = Error("user not found")
-	// ErrUserNameMissing when username is missing.
-	ErrUserNameMissing = Error("user name is missing")
-	// ErrUserAlreadyExist when user already exist in the system.
-	ErrUserAlreadyExist = Error("user already exists")
+	// ErrToDoItemNotFound when todo item is not found.
+	ErrToDoItemNotFound = Error("todo item not found")
+	// ErrToDoItemAlreadyExist when todo item already exist in the system.
+	ErrToDoItemAlreadyExist = Error("todo item already exists")
 )
 
 // Error represents a Sampleapp error.

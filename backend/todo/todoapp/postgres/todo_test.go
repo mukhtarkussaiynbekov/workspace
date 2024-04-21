@@ -60,15 +60,15 @@ func (s *todoTestSuite) TestFetch() {
 	assert.Equal(s.T(), "buy milk and bread", todo.Details)
 }
 
-// func (s *todoTestSuite) TestList() {
-// 	todo, err := s.st.List(context.Background())
-// 	assert.NoError(s.T(), err)
-// 	assert.NotNil(s.T(), todo)
-// 	assert.Equal(s.T(), 2, len(todo))
-// 	assert.Equal(s.T(), "xid2", todo[1].Id)
-// 	assert.Equal(s.T(), "visit dentist", todo[1].Title)
-// 	assert.Equal(s.T(), "get scaling", todo[1].Details)
-// }
+func (s *todoTestSuite) TestList() {
+	todo, err := s.st.List(context.Background())
+	assert.NoError(s.T(), err)
+	assert.NotNil(s.T(), todo)
+	assert.Equal(s.T(), 2, len(todo))
+	assert.Equal(s.T(), "xid2", todo[1].Id)
+	assert.Equal(s.T(), "visit dentist", todo[1].Title)
+	assert.Equal(s.T(), "get scaling", todo[1].Details)
+}
 
 func (s *todoTestSuite) TestCreate() {
 	ctx := context.Background()
@@ -84,6 +84,7 @@ func (s *todoTestSuite) TestCreate() {
 	assert.Equal(s.T(), "xid3", todo.Id)
 	assert.Equal(s.T(), "Create Test", todo.Title)
 	assert.Equal(s.T(), "Create Test Details", todo.Details)
+	s.st.Delete(ctx, "xid3")
 }
 
 func (s *todoTestSuite) TestDelete() {
