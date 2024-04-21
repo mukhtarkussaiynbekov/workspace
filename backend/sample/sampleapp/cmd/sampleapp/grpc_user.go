@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 
-	"github.com/anthonycorbacho/workspace/api/errdetails"
-	pb "github.com/anthonycorbacho/workspace/api/sample/sampleapp/v1"
-	"github.com/anthonycorbacho/workspace/kit/errors"
-	"github.com/anthonycorbacho/workspace/kit/log"
-	"github.com/anthonycorbacho/workspace/sample/sampleapp"
+	"github.com/mukhtarkv/workspace/api/errdetails"
+	pb "github.com/mukhtarkv/workspace/api/sample/sampleapp/v1"
+	"github.com/mukhtarkv/workspace/kit/errors"
+	"github.com/mukhtarkv/workspace/kit/log"
+	"github.com/mukhtarkv/workspace/sample/sampleapp"
 	"google.golang.org/grpc/codes"
 )
 

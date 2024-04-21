@@ -3,7 +3,7 @@ package pagination
 import (
 	"testing"
 
-	pb "github.com/anthonycorbacho/workspace/kit/pagination/v1"
+	pb "github.com/mukhtarkv/workspace/kit/pagination/v1"
 	"github.com/stretchr/testify/assert"
 )
 

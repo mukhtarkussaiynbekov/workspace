@@ -3,14 +3,14 @@ package main
 import (
 	"context"
 
-	pb "github.com/anthonycorbacho/workspace/api/sample/sampleapp/v1"
-	"github.com/anthonycorbacho/workspace/kit"
-	"github.com/anthonycorbacho/workspace/kit/config"
-	"github.com/anthonycorbacho/workspace/kit/id"
-	"github.com/anthonycorbacho/workspace/kit/log"
-	"github.com/anthonycorbacho/workspace/sample/sampleapp"
-	"github.com/anthonycorbacho/workspace/sample/sampleapp/inmem"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	pb "github.com/mukhtarkv/workspace/api/sample/sampleapp/v1"
+	"github.com/mukhtarkv/workspace/kit"
+	"github.com/mukhtarkv/workspace/kit/config"
+	"github.com/mukhtarkv/workspace/kit/id"
+	"github.com/mukhtarkv/workspace/kit/log"
+	"github.com/mukhtarkv/workspace/sample/sampleapp"
+	"github.com/mukhtarkv/workspace/sample/sampleapp/inmem"
 	"google.golang.org/grpc"
 )
 

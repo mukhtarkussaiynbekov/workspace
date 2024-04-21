@@ -1,4 +1,4 @@
-module github.com/anthonycorbacho/workspace
+module github.com/mukhtarkv/workspace
 
 go 1.20
 

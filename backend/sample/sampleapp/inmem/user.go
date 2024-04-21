@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/anthonycorbacho/workspace/kit/errors"
-	"github.com/anthonycorbacho/workspace/sample/sampleapp"
+	"github.com/mukhtarkv/workspace/kit/errors"
+	"github.com/mukhtarkv/workspace/sample/sampleapp"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/codes"
 )

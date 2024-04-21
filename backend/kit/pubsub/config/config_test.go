@@ -8,9 +8,9 @@ import (
 
 	"github.com/nats-io/nats.go"
 
-	"github.com/anthonycorbacho/workspace/kit/config"
-	"github.com/anthonycorbacho/workspace/kit/pubsub/gcp"
-	kitnats "github.com/anthonycorbacho/workspace/kit/pubsub/nats"
+	"github.com/mukhtarkv/workspace/kit/config"
+	"github.com/mukhtarkv/workspace/kit/pubsub/gcp"
+	kitnats "github.com/mukhtarkv/workspace/kit/pubsub/nats"
 	"github.com/stretchr/testify/assert"
 )
 

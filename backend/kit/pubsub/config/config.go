@@ -5,12 +5,12 @@ import (
 	"time"
 
 	"cloud.google.com/go/pubsub"
-	"github.com/anthonycorbacho/workspace/kit/config"
-	"github.com/anthonycorbacho/workspace/kit/errors"
-	"github.com/anthonycorbacho/workspace/kit/log"
-	kitpubsub "github.com/anthonycorbacho/workspace/kit/pubsub"
-	kitgcp "github.com/anthonycorbacho/workspace/kit/pubsub/gcp"
-	kitnats "github.com/anthonycorbacho/workspace/kit/pubsub/nats"
+	"github.com/mukhtarkv/workspace/kit/config"
+	"github.com/mukhtarkv/workspace/kit/errors"
+	"github.com/mukhtarkv/workspace/kit/log"
+	kitpubsub "github.com/mukhtarkv/workspace/kit/pubsub"
+	kitgcp "github.com/mukhtarkv/workspace/kit/pubsub/gcp"
+	kitnats "github.com/mukhtarkv/workspace/kit/pubsub/nats"
 	"github.com/nats-io/nats.go"
 )
 

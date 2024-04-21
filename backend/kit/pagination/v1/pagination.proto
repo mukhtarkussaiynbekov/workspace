@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package pagination.v1;
-option go_package = "github.com/anthonycorbacho/workspace/kit/pagination/v1;paginationv1";
+option go_package = "github.com/mukhtarkv/workspace/kit/pagination/v1;paginationv1";
 
 // PageIdentifier represents a Page Identifier.
 message PageIdentifier {

@@ -3,8 +3,8 @@ package sampleapp
 import (
 	"context"
 
-	"github.com/anthonycorbacho/workspace/kit/errors"
-	"github.com/anthonycorbacho/workspace/kit/id"
+	"github.com/mukhtarkv/workspace/kit/errors"
+	"github.com/mukhtarkv/workspace/kit/id"
 	"go.opentelemetry.io/otel"
 )
 

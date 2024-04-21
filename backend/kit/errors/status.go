@@ -3,8 +3,8 @@ package errors
 import (
 	"fmt"
 
-	"github.com/anthonycorbacho/workspace/api/errdetails"
 	"github.com/golang/protobuf/proto" //nolint - required by st.WithDetails
+	"github.com/mukhtarkv/workspace/api/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
