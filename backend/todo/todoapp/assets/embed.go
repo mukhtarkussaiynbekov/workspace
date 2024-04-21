@@ -2,5 +2,5 @@ package assets
 
 import "embed"
 
-//go:embed schema
+//go:embed db
 var SF embed.FS

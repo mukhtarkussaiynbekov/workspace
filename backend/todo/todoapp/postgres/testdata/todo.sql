@@ -1,2 +1,1 @@
-INSERT INTO todo (id, title, details) VALUES 
-("xid1", "buy grocery", "buy milk and bread");
+INSERT INTO todo (id, title, details) VALUES ('xid1', 'buy grocery', 'buy milk and bread');
