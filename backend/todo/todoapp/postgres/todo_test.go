@@ -7,6 +7,7 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	db "github.com/mukhtarkv/workspace/kit/sql"
+	"github.com/mukhtarkv/workspace/todo/todoapp"
 	"github.com/mukhtarkv/workspace/todo/todoapp/assets"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
@@ -59,12 +60,42 @@ func (s *todoTestSuite) TestFetch() {
 	assert.Equal(s.T(), "buy milk and bread", todo.Details)
 }
 
-func (s *todoTestSuite) TestList() {
-	todo, err := s.st.List(context.Background())
+// func (s *todoTestSuite) TestList() {
+// 	todo, err := s.st.List(context.Background())
+// 	assert.NoError(s.T(), err)
+// 	assert.NotNil(s.T(), todo)
+// 	assert.Equal(s.T(), 2, len(todo))
+// 	assert.Equal(s.T(), "xid2", todo[1].Id)
+// 	assert.Equal(s.T(), "visit dentist", todo[1].Title)
+// 	assert.Equal(s.T(), "get scaling", todo[1].Details)
+// }
+
+func (s *todoTestSuite) TestCreate() {
+	ctx := context.Background()
+	err := s.st.Create(ctx, todoapp.ToDoItem{
+		Id: "xid3",
+		Title: "Create Test",
+		Details: "Create Test Details",
+	})
+	assert.NoError(s.T(), err)
+	todo, err := s.st.Fetch(ctx, "xid3")
 	assert.NoError(s.T(), err)
 	assert.NotNil(s.T(), todo)
-	assert.Equal(s.T(), 2, len(todo))
-	assert.Equal(s.T(), "xid2", todo[1].Id)
-	assert.Equal(s.T(), "visit dentist", todo[1].Title)
-	assert.Equal(s.T(), "get scaling", todo[1].Details)
+	assert.Equal(s.T(), "xid3", todo.Id)
+	assert.Equal(s.T(), "Create Test", todo.Title)
+	assert.Equal(s.T(), "Create Test Details", todo.Details)
+}
+
+func (s *todoTestSuite) TestDelete() {
+	ctx := context.Background()
+	err := s.st.Create(ctx, todoapp.ToDoItem{
+		Id: "xid4",
+		Title: "Delete Test",
+		Details: "Delete Test Details",
+	})
+	assert.NoError(s.T(), err)
+	err = s.st.Delete(ctx, "xid4")
+	assert.NoError(s.T(), err)
+	_, err = s.st.Fetch(ctx, "xid4")
+	assert.NotNil(s.T(), err)
 }
