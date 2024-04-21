@@ -7,6 +7,9 @@ import (
 	"github.com/mukhtarkv/workspace/todo/todoapp"
 )
 
+// Verify interface compliance
+var _ todoapp.ToDoStorage = (*storage)(nil)
+
 type storage struct {
 	db *sqlx.DB
 }
@@ -48,4 +51,26 @@ func (s *storage) List(ctx context.Context) ([]todoapp.ToDoItem, error) {
 		})
 	}
 	return res, nil
+}
+
+func (s *storage) Create(ctx context.Context, item todoapp.ToDoItem) error {
+	q := `INSERT INTO todo (id, title, details)
+		VALUES (:id, :title, :details)`
+	entity := todo{
+		Id: item.Id,
+		Title: item.Title,
+		Details: item.Details,
+	}
+	if _, err := s.db.NamedExecContext(ctx, q, entity); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *storage) Delete(ctx context.Context, id string) error {
+	q := `DELETE FROM todo WHERE id = $1`
+	if _, err := s.db.ExecContext(ctx, q, id); err != nil {
+		return err
+	}
+	return nil
 }
