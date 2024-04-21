@@ -1,6 +1,6 @@
 # Workspace
 [![Go Report Card](https://goreportcard.com/badge/github.com/mukhtarkv/workspace)](https://goreportcard.com/report/github.com/mukhtarkv/workspace)
-[![go.mod Go version](https://img.shields.io/github/go-mod/go-version/anthonycorbacho/workspace)](https://github.com/mukhtarkv/workspace)
+[![go.mod Go version](https://img.shields.io/github/go-mod/go-version/mukhtarkv/workspace)](https://github.com/mukhtarkv/workspace)
 
 **Workspace** is a Mono-repository template for building and deploying distributed applications.
 
@@ -96,7 +96,7 @@ This workspace is built using ko, Tilt and Go modules.
 
 ```bash
 # First fork or clone the repository
-git clone git@github.com:anthonycorbacho/workspace.git
+git clone git@github.com:mukhtarkv/workspace.git
 
 # you can run the whole project on your local kubernetes (via docker desktop or rancher desktop)
 tilt up
