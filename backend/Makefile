@@ -37,8 +37,5 @@ bench:			## Run go benchmarks
 onboarding:		## Install tools for the project
 		@./sdlc/onboarding/onboarding.sh
 
-codegen:		## install codegen in the gopath
-		@cd sdlc/codegen && $(GOCMD) install cmd/codegen.go
-
 help:			## Show this help
 		@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
