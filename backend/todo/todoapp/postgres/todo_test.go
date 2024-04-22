@@ -93,6 +93,32 @@ func (s *todoTestSuite) TestCreate() {
 	s.st.Delete(ctx, "xid3")
 }
 
+func (s *todoTestSuite) TestUpdate() {
+	ctx := context.Background()
+	todoItem := todoapp.ToDoItem{
+		Id: "xid10",
+		Title: "Create Update Test",
+		Details: "Create Update Test Details",
+	}
+	err := s.st.Create(ctx, todoItem)
+	assert.NoError(s.T(), err)
+	err = s.st.Update(ctx, todoapp.ToDoItem{
+		Id: "xid10",
+		Title: "Update Test",
+		Details: "Update Test Details",
+	})
+	assert.NoError(s.T(), err)
+	todo, err := s.st.Fetch(ctx, "xid10")
+	assert.NoError(s.T(), err)
+	assert.NotNil(s.T(), todo)
+	assert.Equal(s.T(), "xid10", todo.Id)
+	assert.Equal(s.T(), "Update Test", todo.Title)
+	assert.Equal(s.T(), "Update Test Details", todo.Details)
+	
+	err = s.st.Delete(ctx, "xid10")
+	assert.NoError(s.T(), err)
+}
+
 func (s *todoTestSuite) TestDelete() {
 	ctx := context.Background()
 	err := s.st.Create(ctx, todoapp.ToDoItem{
