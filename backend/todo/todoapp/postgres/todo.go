@@ -91,6 +91,32 @@ func (s *storage) Create(ctx context.Context, item todoapp.ToDoItem) error {
 	return nil
 }
 
+func (s *storage) Update(ctx context.Context, item todoapp.ToDoItem) error {
+	_, span := otel.Tracer("").Start(ctx, "postgres.update")
+	defer span.End()
+
+	q := `UPDATE todo
+		SET title = :title,
+			details = :details
+		WHERE id = :id`
+	entity := todo{
+		Id: item.Id,
+		Title: item.Title,
+		Details: item.Details,
+	}
+	if _, err := s.db.NamedExecContext(ctx, q, entity); err != nil {
+		span.RecordError(err)
+		span.SetStatus(codes.Error, "updating entity")
+		span.SetAttributes(
+			attribute.String("id", entity.Id),
+			attribute.String("title", entity.Title),
+			attribute.String("details", entity.Details),
+		)
+		return Wrap(err, "updating entity")
+	}
+	return nil
+}
+
 func (s *storage) Delete(ctx context.Context, id string) error {
 	_, span := otel.Tracer("").Start(ctx, "postgres.delete")
 	defer span.End()
