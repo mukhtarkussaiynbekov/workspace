@@ -1,0 +1,263 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ToDo App",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "ToDoApp"
+    }
+  ],
+  "host": "todoapp.example.org",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/todos": {
+      "get": {
+        "summary": "List todos.",
+        "operationId": "ToDoApp_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1beta1ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ToDoApp"
+        ]
+      },
+      "post": {
+        "summary": "Create a todo.",
+        "operationId": "ToDoApp_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1beta1CreateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1beta1CreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ToDoApp"
+        ]
+      }
+    },
+    "/todos/{id}": {
+      "delete": {
+        "summary": "Delete todo.",
+        "operationId": "ToDoApp_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1beta1DeleteResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "ID of the todo item",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ToDoApp"
+        ]
+      },
+      "put": {
+        "summary": "Update a todo.",
+        "operationId": "ToDoApp_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1beta1UpdateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "ID of the todo item resource to update.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ToDoAppUpdateBody"
+            }
+          }
+        ],
+        "tags": [
+          "ToDoApp"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ToDoAppUpdateBody": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1beta1UpdateRequestToDoItem",
+          "description": "A ToDo item containing the updated resource."
+        },
+        "update_mask": {
+          "type": "string",
+          "description": "Standard field mask for the set of fields to be updated."
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1beta1CreateRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "v1beta1CreateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "v1beta1DeleteResponse": {
+      "type": "object"
+    },
+    "v1beta1ListResponse": {
+      "type": "object",
+      "properties": {
+        "todo_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1beta1ListResponseToDoItem"
+          },
+          "title": "List of ToDo items"
+        }
+      }
+    },
+    "v1beta1ListResponseToDoItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID of the item"
+        },
+        "title": {
+          "type": "string",
+          "title": "Title of the item"
+        },
+        "details": {
+          "type": "string",
+          "title": "Details of the item"
+        }
+      }
+    },
+    "v1beta1UpdateRequestToDoItem": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "v1beta1UpdateResponse": {
+      "type": "object"
+    }
+  }
+}
