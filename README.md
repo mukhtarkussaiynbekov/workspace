@@ -1,7 +1,7 @@
 # Workspace
 
 After installing requirements and running the whole project in local environment, you can see
-[todo app](todo/todoapp) for more details on APIs for the ToDo app.
+[todo app](todo) for more details on APIs for the ToDo app.
 
 **Workspace** is a Mono-repository template for building and deploying distributed applications.
 
