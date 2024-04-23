@@ -35,22 +35,29 @@ spec:
       labels:
         app: todoapp
       annotations:
-        sidecar.istio.io/inject: "true"
-        prometheus.io.scrape: "true"
-        prometheus.io.path: "/metrics"
-        prometheus.io.port: "9090"
+        sidecar.istio.io/inject: 'true'
+        prometheus.io.scrape: 'true'
+        prometheus.io.path: '/metrics'
+        prometheus.io.port: '9090'
         pyroscope.io/application-name: todo.todoapp
-        pyroscope.io/port: "9091"
-        pyroscope.io/profile-cpu-enabled: "true"
-        pyroscope.io/profile-mem-enabled: "true"
-        pyroscope.io/scrape: "true"
+        pyroscope.io/port: '9091'
+        pyroscope.io/profile-cpu-enabled: 'true'
+        pyroscope.io/profile-mem-enabled: 'true'
+        pyroscope.io/scrape: 'true'
     spec:
       automountServiceAccountToken: false
       containers:
         - image: local/todo/todoapp
           imagePullPolicy: IfNotPresent
           name: todoapp
+          envFrom:
+            - configMapRef:
+                name: postgres-secret
           env:
+            - name: POSTGRES_HOST
+              value: postgres
+            - name: POSTGRES_PORT
+              value: '5432'
             - name: OTL_ENDPOINT
               value: grafana-agent.monitoring.svc.cluster.local:4317
             - name: POD_NAME
@@ -107,3 +114,45 @@ spec:
   selector:
     matchLabels:
       name: todoapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: todo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo
+  template:
+    metadata:
+      labels:
+        app: todo
+    spec:
+      containers:
+        - name: postgres
+          image: 'postgres:latest'
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: todo
+  labels:
+    app: todo
+spec:
+  clusterIP: None
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+      name: postgres
+  selector:
+    app: todo

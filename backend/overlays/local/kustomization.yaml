@@ -4,4 +4,6 @@ commonAnnotations:
   environment: local
 
 resources:
-- ../../sample
+  - storage_configmap.yaml
+  - ../../sample
+  - ../../todo
