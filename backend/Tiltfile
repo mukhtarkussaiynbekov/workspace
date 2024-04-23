@@ -37,3 +37,4 @@ k8s_yaml(kustomize('overlays/local'))
 
 # sample namespace
 include('./sample/sampleapp/Tiltfile')
+include('./todo/todoapp/Tiltfile')

@@ -8,8 +8,8 @@ ko_build(
 
 k8s_resource('todoapp',
     port_forwards=[
-        '8010:8080',  # todoapp service endpoints
-        '8011:9090'   # todoapp metrics endpoint
+        '8020:8080',  # todoapp service endpoints
+        '8021:9090'   # todoapp metrics endpoint
     ],
     labels=["todo"],
 )

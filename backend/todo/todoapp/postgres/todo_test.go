@@ -15,7 +15,7 @@ import (
 
 type todoTestSuite struct {
 	suite.Suite
-	st *storage
+	st *ToDoStorage
 }
 
 func TestToDoSuite(t *testing.T) {
@@ -29,26 +29,26 @@ func (s *todoTestSuite) SetupSuite() {
 	if err != nil {
 		s.T().Fatalf("opening db connection %v", err)
 	}
-	s.st = &storage{
-		db: rootdb,
+	s.st = &ToDoStorage{
+		DB: rootdb,
 	}
 
 	// Apply migration scripts
 	if err := db.Migrate(rootdb, "test_todo", assets.SF); err != nil {
-		s.st.db.Close()
+		s.st.DB.Close()
 		s.T().Fatalf("applying schema migration scripts %v", err)
 	}
 
 	// Add test data
 	if _, err := sqlx.LoadFile(rootdb, "./testdata/todo.sql"); err != nil {
-		s.st.db.Close()
+		s.st.DB.Close()
 		s.T().Fatalf("loading test data %v", err)
 	}
 }
 
 func (s *todoTestSuite) TearDownSuite() {
-	defer s.st.db.Close()
-	sqlx.LoadFile(s.st.db, "./testdata/todo_cleanup.sql")
+	defer s.st.DB.Close()
+	sqlx.LoadFile(s.st.DB, "./testdata/todo_cleanup.sql")
 }
 
 func (s *todoTestSuite) TestFetch() {
@@ -77,7 +77,7 @@ func (s *todoTestSuite) TestCreate() {
 		Title: "Create Test",
 		Details: "Create Test Details",
 	}
-	err := s.st.Create(ctx, todoItem)
+	err := s.st.Create(ctx, &todoItem)
 	assert.NoError(s.T(), err)
 	todo, err := s.st.Fetch(ctx, "xid3")
 	assert.NoError(s.T(), err)
@@ -87,7 +87,7 @@ func (s *todoTestSuite) TestCreate() {
 	assert.Equal(s.T(), "Create Test Details", todo.Details)
 
 	// Clean up
-	err = s.st.Create(ctx, todoItem)
+	err = s.st.Create(ctx, &todoItem)
 	assert.NotNil(s.T(), err)
 	assert.ErrorContains(s.T(), err, "already exists")
 	s.st.Delete(ctx, "xid3")
@@ -100,9 +100,9 @@ func (s *todoTestSuite) TestUpdate() {
 		Title: "Create Update Test",
 		Details: "Create Update Test Details",
 	}
-	err := s.st.Create(ctx, todoItem)
+	err := s.st.Create(ctx, &todoItem)
 	assert.NoError(s.T(), err)
-	err = s.st.Update(ctx, todoapp.ToDoItem{
+	err = s.st.Update(ctx, &todoapp.ToDoItem{
 		Id: "xid10",
 		Title: "Update Test",
 		Details: "Update Test Details",
@@ -121,7 +121,7 @@ func (s *todoTestSuite) TestUpdate() {
 
 func (s *todoTestSuite) TestDelete() {
 	ctx := context.Background()
-	err := s.st.Create(ctx, todoapp.ToDoItem{
+	err := s.st.Create(ctx, &todoapp.ToDoItem{
 		Id: "xid4",
 		Title: "Delete Test",
 		Details: "Delete Test Details",

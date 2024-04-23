@@ -17,7 +17,7 @@ func Wrap(err error, message string) error {
 		return nil
 	}
 
-	var modifiedErr todoapp.Error
+	var modifiedErr todoapp.Error = todoapp.Error(err.Error())
 	var pgErr *pgconn.PgError
 	if errors.As(err, &pgErr) {
 		switch pgErr.Code {
